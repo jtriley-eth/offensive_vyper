@@ -1,12 +1,12 @@
 # Vyper Based Capture The Flag Challenges
 
-## Challenges
+## Challenges (Will Remove Later to Avoid Spoilers)
 
-1. SWC-136: Unencrypted Private Data On-Chain
+1. SWC-136: Unencrypted Private Data On-Chain `password_vault`
 
-2. SWC-132: Unexpected Ether balance
+2. SWC-132: Unexpected Ether balance `unstoppable_auction`
 
-3. SWC-120: Weak Sources of Randomness from Chain Attributes
+3. SWC-120: Weak Sources of Randomness from Chain Attributes `coin_flipper`
 
 4. SWC-107: Reentrancy
 
