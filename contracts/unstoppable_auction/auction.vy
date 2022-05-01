@@ -9,8 +9,8 @@
 """
 
 event NewBid:
-	_bidder: indexed(address)
-	_amount: uint256
+	bidder: indexed(address)
+	amount: uint256
 
 owner: address
 total_deposit: public(uint256)
@@ -22,30 +22,30 @@ auction_end: public(uint256)
 
 
 @external
-def __init__(_auction_start: uint256, _auction_end: uint256):
-	assert _auction_start < _auction_end
+def __init__(auction_start: uint256, auction_end: uint256):
+	assert auction_start < auction_end
 
-	self.auction_start = _auction_start
-	self.auction_end = _auction_end
+	self.auction_start = auction_start
+	self.auction_end = auction_end
 	self.owner = msg.sender
 
 
 @internal
-def handle_bid(_bidder: address, _amount: uint256):
+def handle_bid(bidder: address, amount: uint256):
 	assert self.balance == self.total_deposit
 	assert self.auction_start < block.timestamp and block.timestamp < self.auction_end
 
 	# if the current bidder is not highest_bidder, assert their bid is higher than the last,
 	# otherwise, this means the highest_bidder is increasing their bid
-	if _bidder != self.highest_bidder:
-		assert _amount > self.highest_bid
+	if bidder != self.highest_bidder:
+		assert amount > self.highest_bid
 
-	self.total_deposit += _amount
-	self.deposits[_bidder] += _amount
-	self.highest_bid = _amount
-	self.highest_bidder = _bidder
+	self.total_deposit += amount
+	self.deposits[bidder] += amount
+	self.highest_bid = amount
+	self.highest_bidder = bidder
 
-	log NewBid(_bidder, _amount)
+	log NewBid(bidder, amount)
 
 
 @external

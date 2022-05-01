@@ -8,21 +8,21 @@ owner: address
 
 
 @external
-def __init__(_password: String[32]):
-	self.password = _password
+def __init__(password: String[32]):
+	self.password = password
 	self.owner = msg.sender
 
 
 @external
-def set_new_password(_old_password: String[32], _password: String[32]):
-	assert self.password == _old_password or msg.sender == self.owner
+def set_new_password(old_password: String[32], password: String[32]):
+	assert self.password == old_password or msg.sender == self.owner
 	
-	self.password = _password
+	self.password = password
 
 
 @external
-def withdraw(_password: String[32]):
-	assert self.password == _password or msg.sender == self.owner
+def withdraw(password: String[32]):
+	assert self.password == password or msg.sender == self.owner
 
 	send(msg.sender, self.balance)
 
@@ -31,3 +31,4 @@ def withdraw(_password: String[32]):
 @payable
 def __default__():
 	pass
+
