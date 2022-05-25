@@ -1,4 +1,4 @@
-# @version 0.3.1
+# @version 0.3.4
 
 """
 @title Ether Liquidity Pool
@@ -16,7 +16,7 @@ event Withdrawal:
 	amount: uint256
 
 
-deposits = public(HashMap[address, uint256])
+deposits: public(HashMap[address, uint256])
 
 
 @external

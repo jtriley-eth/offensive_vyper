@@ -1,4 +1,4 @@
- @version 0.3.1
+# @version 0.3.4
 
 # @title coin_flipper
 # @author jtriley.eth
@@ -14,7 +14,7 @@ event Winner:
 
 generator: public(address)
 
-cost: public(constant(uint256)) = 1000000000000000000
+cost: constant(uint256) = 1000000000000000000
 
 
 @external

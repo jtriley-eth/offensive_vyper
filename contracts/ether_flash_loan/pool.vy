@@ -1,4 +1,4 @@
-# @version 0.3.1
+# @version 0.3.4
 
 """
 @title Ether Flash Loan Pool
@@ -17,7 +17,7 @@ event Withdrawal:
 	amount: uint256
 
 
-deposits = public(HashMap[address, uint256])
+deposits: public(HashMap[address, uint256])
 
 
 @external
@@ -35,11 +35,11 @@ def withdraw(amount: uint256):
 	@param amount Withdrwawal amount
 	@dev Throws when amount is gt than deposit
 	"""
-	deposit = self.deposits[msg.sender]
+	sender_deposit: uint256 = self.deposits[msg.sender]
 
-	assert deposit >= amount, "not enough deposited"
+	assert sender_deposit >= amount, "not enough deposited"
 
-	self.deposits[msg.sender] = deposit - amount
+	self.deposits[msg.sender] = sender_deposit - amount
 
 	send(msg.sender, amount)
 
@@ -52,7 +52,7 @@ def flash_loan(amount: uint256):
 	@param amount Amount to flash loan
 	@dev Throws when insufficient balance OR flash loan isn't paid back
 	"""
-	uint256 balance_before = self.balance
+	balance_before: uint256 = self.balance
 
 	assert balance_before >= amount, "not enough balance"
 
