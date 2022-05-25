@@ -1,4 +1,4 @@
-# @version 0.3.1
+ @version 0.3.1
 
 # @title coin_flipper
 # @author jtriley.eth
@@ -13,13 +13,14 @@ event Winner:
 
 
 generator: public(address)
-cost: constant(uint256) = 1000000000000000000
+
+cost: public(constant(uint256)) = 1000000000000000000
 
 
 @external
 @payable
 def flip_coin(guess: bool):
-    assert msg.value == cost
+    assert msg.value == cost, "not free to play"
 
     side: bool = Rng(self.generator).generate_random_number() % 2 == 0
 
@@ -30,3 +31,4 @@ def flip_coin(guess: bool):
         send(msg.sender, amount)
 
         log Winner(msg.sender, amount)
+
