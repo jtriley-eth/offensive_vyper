@@ -14,9 +14,9 @@
 
 6. SWC-112: Delegatecall to Untrusted Callee `proxy`
 
-7. SWC-121: Missing Protection against Signature Replay Attacks
+7. SWC-121: Missing Protection against Signature Replay Attacks `meta_tx`
 
-8. DVDF: https://www.damnvulnerabledefi.xyz/challenges/2.html Naive Receiver
+8. DVDF: https://www.damnvulnerabledefi.xyz/challenges/2.html Naive Receiver `flash_receiver`
 
 9. Attempt to prevent smart contract from calling
 

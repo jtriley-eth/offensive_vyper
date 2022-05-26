@@ -1,4 +1,4 @@
-# @version 0.3.4
+# @version ^0.3.2
 
 """
 @title Permissionless Auction Contract
