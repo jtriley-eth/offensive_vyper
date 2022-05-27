@@ -1,7 +1,7 @@
 # @version ^0.3.2
 
 """
-@title password_storage
+@title Password Protected Vault
 @author jtriley.eth
 """
 

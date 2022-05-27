@@ -27,9 +27,16 @@ def _execute_action():
 
 
 @external
+def execute():
+	assert msg.sender == pool, "invalid caller"
+	_execute_action()
+	fee: uint256 = IPool(pool).flash_fee()
+	ERC20(token).transfer(pool, amount + fee)
+
+
+@external
 def initiate_flash_loan(amount: uint256):
 	IPool(pool).flash_loan(amount)
-	_execute_action()
 	fee: uint256 = IPool(pool).flash_fee()
 	ERC20(token).transfer(pool, amount + fee)
 

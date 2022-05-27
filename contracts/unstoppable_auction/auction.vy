@@ -1,7 +1,7 @@
 # @version ^0.3.2
 
 """
-@title Permissionless Auction Contract
+@title Unstoppable Auction
 @author jtriley.eth
 @license MIT
 """

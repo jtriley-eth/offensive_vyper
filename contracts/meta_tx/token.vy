@@ -31,6 +31,7 @@ balanceOf: public(HashMap[address, uint256])
 
 allowance: public(HashMap[address, HashMap[address, uint256]])
 
+nonce: uint256
 
 @external
 def __init__(name: String[32], symbol: String[32], initial_supply: uint256):
@@ -80,7 +81,8 @@ def metaTransfer(
 		concat(
 			convert(sender, bytes32),
 			convert(receiver, bytes32),
-			convert(amount, bytes32)
+			convert(amount, bytes32),
+			convert(nonce, bytes32)
 		)
 	)
 	signer: address = ecrecover(hash, v, r, s)

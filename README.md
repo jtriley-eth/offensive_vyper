@@ -10,7 +10,7 @@
 
 4. SWC-107: Reentrancy `ether_vault`
 
-5. DVDF: https://www.damnvulnerabledefi.xyz/challenges/4.html Side Entrance `unstoppable_auction`
+5. DVDF: https://www.damnvulnerabledefi.xyz/challenges/4.html Side Entrance `ether_flash_loan`
 
 6. SWC-112: Delegatecall to Untrusted Callee `proxy`
 

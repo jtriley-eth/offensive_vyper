@@ -1,7 +1,9 @@
 # @version ^0.3.2
 
-# @title random_number
-# @author jtriley.eth
+"""
+@title Random Number Generator
+@author jtriley.eth
+"""
 
 nonce: public(uint256)
 

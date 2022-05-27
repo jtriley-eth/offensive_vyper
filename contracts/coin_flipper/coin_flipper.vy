@@ -1,7 +1,9 @@
 # @version ^0.3.2
 
-# @title coin_flipper
-# @author jtriley.eth
+"""
+@title Coin Flipper
+@author jtriley.eth
+"""
 
 interface Rng:
     def generate_random_number() -> uint256: nonpayable
@@ -14,21 +16,21 @@ event Winner:
 
 generator: public(address)
 
-cost: constant(uint256) = 1000000000000000000
+cost: constant(uint256) = 10 ** 18
 
 
 @external
 @payable
 def flip_coin(guess: bool):
-    assert msg.value == cost, "not free to play"
+	assert msg.value == cost, "not free to play"
 
-    side: bool = Rng(self.generator).generate_random_number() % 2 == 0
+	side: bool = Rng(self.generator).generate_random_number() % 2 == 0
 
-    if side == guess:
+	if side == guess:
 
-        amount: uint256 = self.balance
+		amount: uint256 = cost * 2
 
-        send(msg.sender, amount)
+		send(msg.sender, amount)
 
-        log Winner(msg.sender, amount)
+		log Winner(msg.sender, amount)
 

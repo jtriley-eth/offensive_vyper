@@ -61,3 +61,11 @@ def flash_loan(amount: uint256):
 	assert self.balance >= balance_before, "flash loan not paid back"
 
 
+@external
+@payable
+def pay_back_flash_loan():
+	"""
+	@notice For paying back flash loans ONLY
+	"""
+	pass
+
