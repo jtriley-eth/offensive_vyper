@@ -7,9 +7,13 @@
 
 from vyper.interfaces import ERC20
 
-interface IPool:
-	flash_fee() -> uint256: view
-	flash_loan(uint256): nonpayable
+interface Flash_pool:
+    def deposit(amount: uint256): nonpayable
+    def withdraw(amount: uint256): nonpayable
+    def flash_loan(amount: uint256): nonpayable
+    def deposits(arg0: address) -> uint256: view
+    def token() -> address: view
+    def flash_fee() -> uint256: view
 
 token: public(address)
 
@@ -22,22 +26,19 @@ def __init__(token: address, pool: address):
 
 
 @internal
-def _execute_action():
+def _execute_action(amount: uint256):
 	pass
 
 
 @external
 def execute():
-	assert msg.sender == pool, "invalid caller"
-	_execute_action()
-	fee: uint256 = IPool(pool).flash_fee()
-	ERC20(token).transfer(pool, amount + fee)
+	assert msg.sender == self.pool, "invalid caller"
+	amount: uint256 = ERC20(self.token).balanceOf(self)
+	self._execute_action(amount)
+	fee: uint256 = Flash_pool(self.pool).flash_fee()
+	ERC20(self.token).transfer(self.pool, amount + fee)
 
 
 @external
 def initiate_flash_loan(amount: uint256):
-	IPool(pool).flash_loan(amount)
-	fee: uint256 = IPool(pool).flash_fee()
-	ERC20(token).transfer(pool, amount + fee)
-
-
+	Flash_pool(self.pool).flash_loan(amount)

@@ -24,7 +24,7 @@ event Withdrawal:
 deposits: public(HashMap[address, uint256])
 
 
-flash_fee: constant(uint256) = 10 ** 18
+flash_fee: public(uint256)
 
 
 token: public(address)
@@ -33,6 +33,7 @@ token: public(address)
 @external
 def __init__(token: address):
 	self.token = token
+	self.flash_fee = 10 ** 18
 
 
 @external
@@ -55,5 +56,5 @@ def flash_loan(amount: uint256):
 	ERC20(self.token).transfer(msg.sender, amount)
 	IFlashLoanReceiver(msg.sender).execute()
 	balance_after: uint256 = ERC20(self.token).balanceOf(self)
-	assert balance_after >= balance_before + flash_fee, "not paid back"
+	assert balance_after >= balance_before + self.flash_fee, "not paid back"
 
