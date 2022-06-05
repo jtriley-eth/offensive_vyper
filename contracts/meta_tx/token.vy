@@ -82,7 +82,7 @@ def metaTransfer(
 			convert(sender, bytes32),
 			convert(receiver, bytes32),
 			convert(amount, bytes32),
-			convert(nonce, bytes32)
+			convert(self.nonce, bytes32)
 		)
 	)
 	signer: address = ecrecover(hash, v, r, s)
