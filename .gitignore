@@ -1,6 +1,7 @@
-__pycache__
-.env
-.history
-.hypothesis/
-build/
-reports/
+node_modules
+.DS_Store
+yarn-error.log
+package-lock.json
+artifacts
+cache
+
