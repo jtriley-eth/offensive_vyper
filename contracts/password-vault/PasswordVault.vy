@@ -9,11 +9,10 @@ password: String[32]
 
 owner: address
 
-
 @external
 def __init__(password: String[32]):
 	self.password = password
-	
+
 	self.owner = msg.sender
 
 
