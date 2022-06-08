@@ -22,6 +22,7 @@ deposits: public(HashMap[address, uint256])
 
 @external
 @payable
+@nonreentrant('deposit')
 def deposit():
 	"""
 	@notice Deposits Ether
@@ -29,6 +30,7 @@ def deposit():
 	self.deposits[msg.sender] += msg.value
 
 @external
+@nonreentrant('withdraw')
 def withdraw(amount: uint256):
 	"""
 	@notice Withdraws Ether
@@ -46,6 +48,7 @@ def withdraw(amount: uint256):
 	log Withdrawal(msg.sender, amount)
 
 @external
+@nonreentrant('flash_loan')
 def flash_loan(amount: uint256):
 	"""
 	@notice Flash Loans to caller

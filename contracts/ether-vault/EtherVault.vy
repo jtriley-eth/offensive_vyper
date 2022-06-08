@@ -10,7 +10,6 @@ event Deposit:
 	account: indexed(address)
 	amount: uint256
 
-
 event Withdrawal:
 	account: indexed(address)
 	amount: uint256

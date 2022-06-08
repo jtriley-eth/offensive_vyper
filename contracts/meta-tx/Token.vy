@@ -31,7 +31,9 @@ balanceOf: public(HashMap[address, uint256])
 
 allowance: public(HashMap[address, HashMap[address, uint256]])
 
-nonce: uint256
+nonce: public(uint256)
+
+hash_length: constant(uint256) = 32
 
 @external
 def __init__(name: String[32], symbol: String[32], initial_supply: uint256):
@@ -85,7 +87,16 @@ def metaTransfer(
 			convert(self.nonce, bytes32)
 		)
 	)
-	signer: address = ecrecover(hash, v, r, s)
+
+	message: bytes32 = keccak256(
+		concat(
+			convert("\x19Ethereum Signed Message:\n", bytes32)
+			convert(hash_length, bytes32)
+			hash
+		)
+	)
+
+	signer: address = ecrecover(message, v, r, s)
 	assert signer == sender, "invalid sender"
 
 	self.balanceOf[sender] -= amount

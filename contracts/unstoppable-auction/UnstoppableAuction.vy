@@ -67,6 +67,8 @@ def withdraw():
 	"""
 	assert self.highest_bidder != msg.sender
 
+	assert self.balance == self.total_deposit
+
 	amount: uint256 = self.deposits[msg.sender]
 
 	self.deposits[msg.sender] = 0
@@ -83,6 +85,8 @@ def owner_withdraw():
 	@dev Throws if msg sender is not the owner or if the auction has not ended
 	"""
 	assert msg.sender == self.owner
+
+	assert self.balance == self.total_deposit
 
 	assert block.timestamp >= self.auction_end
 

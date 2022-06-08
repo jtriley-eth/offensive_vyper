@@ -21,6 +21,12 @@ cost: constant(uint256) = 10 ** 18
 
 @external
 @payable
+def __init__(generator: address):
+	self.generator = generator
+
+
+@external
+@payable
 def flip_coin(guess: bool):
 	assert msg.value == cost, "not free to play"
 

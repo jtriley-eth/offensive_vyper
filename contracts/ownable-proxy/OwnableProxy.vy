@@ -13,6 +13,11 @@ owner: public(address)
 
 
 @external
+def __init__():
+	self.ownaer = msg.sender
+
+
+@external
 def forward_call(target: address, payload: Bytes[32]):
 	"""
 	@notice Forwards a contract call
