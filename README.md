@@ -18,5 +18,3 @@
 
 8. DVDF: https://www.damnvulnerabledefi.xyz/challenges/2.html Naive Receiver `flash_receiver`
 
-9. Attempt to prevent smart contract from calling
-
