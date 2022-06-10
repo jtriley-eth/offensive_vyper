@@ -1,20 +1,23 @@
 # Vyper Based Capture The Flag Challenges
 
-## Challenges (Will Remove Later to Avoid Spoilers)
+## Introduction
 
-1. SWC-136: Unencrypted Private Data On-Chain `password_vault`
+Offensive Vyper
 
-2. SWC-132: Unexpected Ether balance `unstoppable_auction`
+## Challenges
 
-3. SWC-120: Weak Sources of Randomness from Chain Attributes `coin_flipper`
+0. [Password Vault](./docs/PasswordVault.md)
 
-4. SWC-107: Reentrancy `ether_vault`
+1. [Unstoppable Auction](./docs/UnstoppableAuction.md)
 
-5. DVDF: https://www.damnvulnerabledefi.xyz/challenges/4.html Side Entrance `ether_flash_loan`
+2. [Coin Flipper](./docs/CoinFlipper.md)
 
-6. SWC-112: Delegatecall to Untrusted Callee `proxy`
+3. [Ether Vault](./docs/EtherVault.md)
 
-7. SWC-121: Missing Protection against Signature Replay Attacks `meta_tx`
+4. [Ether Flash Loan](./docs/EtherFlashLoan.md)
 
-8. DVDF: https://www.damnvulnerabledefi.xyz/challenges/2.html Naive Receiver `flash_receiver`
+5. [Ownable Proxy](./docs/OwnableProxy.md)
 
+6. [Meta Tx](./docs/MetaTx.md)
+
+7. [Flash Receiver](./docs/FlashReceiver.md)
