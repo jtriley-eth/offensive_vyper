@@ -4,7 +4,7 @@ const { ethers } = require('hardhat')
 describe('[COIN FLIPPER EXPLOIT]', async function () {
     let deployer, attacker
 
-    const INITIAL_BALANCE = ethers.utils.parseEther('2')
+    const INITIAL_BALANCE = ethers.utils.parseEther('10')
 
     before(async function () {
         // SET UP

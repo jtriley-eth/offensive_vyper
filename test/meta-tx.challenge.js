@@ -12,7 +12,7 @@ function generateMessageHash(sender, receiver, amount, nonce) {
 describe('[META TX EXPLOIT]', async function () {
     let deployer, attacker
 
-    const INITIAL_BALANCE = ethers.utils.parseEther('10')
+    const INITIAL_BALANCE = ethers.utils.parseEther('100')
     const TRANSFER_AMOUNT = ethers.utils.parseEther('1')
 
     before(async function () {

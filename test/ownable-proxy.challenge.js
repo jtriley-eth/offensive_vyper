@@ -24,6 +24,7 @@ describe('[OWNABLE PROXY EXPLOIT]', async function () {
 
     after(async function () {
         // SUCCESS CONDITIONS
+        expect(await this.ownableProxy.owner()).to.be.equal(attacker.address)
         expect(await ethers.provider.getBalance(this.ownableProxy.address)).to.be.equal('0')
     })
 })

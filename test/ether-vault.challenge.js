@@ -4,7 +4,7 @@ const { ethers } = require('hardhat')
 describe('[ETHER VAULT EXPLOIT]', async function () {
     let deployer, attacker
 
-    const VAULT_BALANCE = ethers.utils.parseEther('10')
+    const VAULT_BALANCE = ethers.utils.parseEther('100')
 
     before(async function () {
         // SET UP
