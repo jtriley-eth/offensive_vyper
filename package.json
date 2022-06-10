@@ -6,7 +6,15 @@
   "author": "jtriley.eth",
   "license": "MIT",
   "scripts": {
-    "build": "hardhat compile"
+    "build": "hardhat compile",
+    "test:coin-flipper": "hardhat test test/coin-flipper.challenge.js",
+    "test:ether-flash-loan": "hardhat test test/ether-flash-loan.challenge.js",
+    "test:ether-vault": "hardhat test test/ether-vault.challenge.js",
+    "test:flash-receiver": "hardhat test test/flash-receiver.challenge.js",
+    "test:meta-tx": "hardhat test test/meta-tx.challenge.js",
+    "test:ownable-proxy": "hardhat test test/ownable-proxy.challenge.js",
+    "test:password-vault": "hardhat test test/password-vault.challenge.js",
+    "test:unstoppable-auction": "hardhat test test/unstoppable-auction.challenge.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",

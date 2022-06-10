@@ -17,4 +17,10 @@ Your objective is to drain all of the Ether from the vault.
 
 [ether-vault.challenge.js](../test/ether-vault.challenge.js)
 
+## Execute Test
+
+```bash
+yarn test:ether-vault
+```
+
 Good Hacking.

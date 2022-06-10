@@ -21,4 +21,10 @@ Your objective is to not break even; drain all ten Ether from the contract.
 
 [unstoppable-auction.challenge.js](../test/coin-flipper.challenge.js)
 
+## Execute Test
+
+```bash
+yarn test:coin-flipper
+```
+
 Good Hacking.

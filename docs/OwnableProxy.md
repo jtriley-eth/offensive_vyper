@@ -18,4 +18,10 @@ Your objective is to become the owner and steal any Ether in the contract.
 
 [ownable-proxy.challenge.js](../test/ownable-proxy.challenge.js)
 
+## Execute Test
+
+```bash
+yarn test:ownable-proxy
+```
+
 Good Hacking.

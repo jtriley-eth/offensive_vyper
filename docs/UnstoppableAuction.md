@@ -18,4 +18,10 @@ Your objective is to halt the auction.
 
 [unstoppable-auction.challenge.js](../test/unstoppable-auction.challenge.js)
 
+## Execute Test
+
+```bash
+yarn test:unstoppable-auction
+```
+
 Good Hacking.

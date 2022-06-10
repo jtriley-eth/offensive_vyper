@@ -21,4 +21,10 @@ Your objective is to drain the Flash Receiver contract.
 
 [flash-receiver.challenge.js](../test/flash-receiver.challenge.js)
 
+## Execute Test
+
+```bash
+yarn test:flash-receiver
+```
+
 Good Hacking.

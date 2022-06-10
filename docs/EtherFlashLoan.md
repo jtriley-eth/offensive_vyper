@@ -20,4 +20,10 @@ Your objective is to drain the flash loan pool, despite those pesky reentrancy g
 
 [ether-flash-loan.challenge.js](../test/ether-flash-loan.challenge.js)
 
+## Execute Test
+
+```bash
+yarn test:ether-flash-loan
+```
+
 Good Hacking.

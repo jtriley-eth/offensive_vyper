@@ -18,4 +18,10 @@ Your objective is to drain their entire balance.
 
 [meta-tx.challenge.js](../test/meta-tx.challenge.js)
 
+## Execute Test
+
+```bash
+yarn test:meta-tx
+```
+
 Good Hacking.
