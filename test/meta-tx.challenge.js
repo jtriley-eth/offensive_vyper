@@ -2,12 +2,11 @@ const { expect } = require('chai')
 const { ethers } = require('hardhat')
 
 function generateMessageHash(sender, receiver, amount, nonce) {
-    return ethers.utils.keccak256(
-        new ethers.utils.AbiCoder().encode(
-            ['address', 'address', 'uint256', 'uint256'],
-            [sender, receiver, amount, nonce]
-        )
+    const message = new ethers.utils.AbiCoder().encode(
+        ['address', 'address', 'uint256', 'uint256'],
+        [sender, receiver, amount, nonce]
     )
+    return ethers.utils.keccak256(message)
 }
 
 describe('[META TX EXPLOIT]', async function () {
@@ -24,34 +23,42 @@ describe('[META TX EXPLOIT]', async function () {
             await ethers.getContractFactory('Token', deployer)
         ).deploy("Meta Token", "Meta", INITIAL_BALANCE)
 
-        await this.token.transfer(alice, INITIAL_BALANCE)
+        await this.token.transfer(alice.address, INITIAL_BALANCE)
 
         const nonce = await this.token.nonce()
-
-        this.metaTransaction = {
-            sender: alice.address,
-            receiver: attacker.address,
-            amount: ethers.utils.parseEther('1').toString(),
-            nonce: nonce.toString()
-        }
 
         const messageHash = generateMessageHash(
             alice.address,
             attacker.address,
-            ethers.utils.parseEther('1').toString(),
+            TRANSFER_AMOUNT,
             nonce.toString()
         )
 
-        this.signature = await alice.signMessage(messageHash)
+        this.signature = ethers.utils.splitSignature(
+            await alice.signMessage(ethers.utils.arrayify(messageHash))
+        )
+
+        await this.token.metaTransfer(
+            alice.address,
+            attacker.address,
+            TRANSFER_AMOUNT,
+            this.signature.v,
+            this.signature.r,
+            this.signature.s
+        )
+
+        expect(
+            await this.token.balanceOf(alice.address)
+        ).to.be.equal(INITIAL_BALANCE.sub(TRANSFER_AMOUNT))
     })
 
     it('Exploit', async function () {
         // YOUR EXPLOIT HERE
-        console.log(this.signature)
+
     })
 
     after(async function () {
         // SUCCESS CONDITIONS
-        expect(await token.balanceOf(alice.address)).to.be.equal('0')
+        expect(await this.token.balanceOf(alice.address)).to.be.equal('0')
     })
 })
