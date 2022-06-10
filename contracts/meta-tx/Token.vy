@@ -33,8 +33,6 @@ allowance: public(HashMap[address, HashMap[address, uint256]])
 
 nonce: public(uint256)
 
-hash_length: constant(uint256) = 32
-
 @external
 def __init__(name: String[32], symbol: String[32], initial_supply: uint256):
 	self.name = name
@@ -90,8 +88,7 @@ def metaTransfer(
 
 	message: bytes32 = keccak256(
 		concat(
-			convert("\x19Ethereum Signed Message:\n", bytes32)
-			convert(hash_length, bytes32)
+			b"\x19Ethereum Signed Message:\n32",
 			hash
 		)
 	)
@@ -103,4 +100,3 @@ def metaTransfer(
 	self.balanceOf[receiver] = unsafe_add(self.balanceOf[receiver], amount)
 
 	return True
-

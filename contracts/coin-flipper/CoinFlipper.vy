@@ -28,7 +28,11 @@ def __init__(generator: address):
 @external
 @payable
 def flip_coin(guess: bool):
-	assert msg.value == cost, "not free to play"
+	"""
+	@notice Takes a guess and 1 ether. If correct, it pays 2 ether.
+	@param guess Heads or Tails (true for heads).
+	"""
+	assert msg.value == cost, "cost is 1 ether"
 
 	side: bool = Rng(self.generator).generate_random_number() % 2 == 0
 

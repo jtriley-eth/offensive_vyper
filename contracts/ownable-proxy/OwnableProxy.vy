@@ -14,7 +14,7 @@ owner: public(address)
 
 @external
 def __init__():
-	self.ownaer = msg.sender
+	self.owner = msg.sender
 
 
 @external
