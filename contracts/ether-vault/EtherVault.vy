@@ -24,7 +24,7 @@ def deposit():
 	"""
 	@notice Deposits Ether.
 	"""
-	self.deposits[msg.sender] += msg.value
+	self.deposits[msg.sender] = unsafe_add(self.deposits[msg.sender], msg.value)
 
 	log Deposit(msg.sender, msg.value)
 
@@ -47,7 +47,7 @@ def __default__():
 	"""
 	@notice Receives Ether as Deposit.
 	"""
-	self.deposits[msg.sender] += msg.value
+	self.deposits[msg.sender] = unsafe_add(self.deposits[msg.sender], msg.value)
 
 	log Deposit(msg.sender, msg.value)
 

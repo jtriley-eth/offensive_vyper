@@ -29,6 +29,7 @@ def deposit():
 	"""
 	self.deposits[msg.sender] += msg.value
 
+
 @external
 @nonreentrant('withdraw')
 def withdraw(amount: uint256):
@@ -46,6 +47,7 @@ def withdraw(amount: uint256):
 	send(msg.sender, amount)
 
 	log Withdrawal(msg.sender, amount)
+
 
 @external
 @nonreentrant('flash_loan')
