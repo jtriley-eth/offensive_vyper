@@ -77,6 +77,18 @@ def metaTransfer(
 	r: uint256,
 	s: uint256
 ) -> bool:
+	"""
+	@notice Transfers `amount` on `sender`'s behalf to `receiver`. Transfer is authenticated with an
+	offchain EC digital signature. Signature components `v`, `r`, and `s` can be generated using
+	client libraries are passed to `ecrecover` builtin. If `sender` does not match the recovered
+	signer, the signature is invalid. A nonce is added to protect against replay attacks.
+	@param sender Address from which to transfer.
+	@param receiver Address to which to transfer.
+	@param amount Amount to transfer.
+	@param v Recovery component of ECDSA.
+	@param r ECDSA 'R' coordinate.
+	@param s ECDSA 'S' coordinate.
+	"""
 	hash: bytes32 = keccak256(
 		concat(
 			convert(sender, bytes32),

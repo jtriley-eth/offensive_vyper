@@ -25,7 +25,7 @@ deposits: public(HashMap[address, uint256])
 @nonreentrant('deposit')
 def deposit():
 	"""
-	@notice Deposits Ether
+	@notice Deposits Ether.
 	"""
 	self.deposits[msg.sender] += msg.value
 
@@ -33,9 +33,9 @@ def deposit():
 @nonreentrant('withdraw')
 def withdraw(amount: uint256):
 	"""
-	@notice Withdraws Ether
-	@param amount Withdrwawal amount
-	@dev Throws when amount is gt than deposit
+	@notice Withdraws Ether.
+	@param amount Withdrwawal amount.
+	@dev Throws when amount is gt than deposit.
 	"""
 	sender_deposit: uint256 = self.deposits[msg.sender]
 
@@ -51,9 +51,9 @@ def withdraw(amount: uint256):
 @nonreentrant('flash_loan')
 def flash_loan(amount: uint256):
 	"""
-	@notice Flash Loans to caller
-	@param amount Amount to flash loan
-	@dev Throws when insufficient balance OR flash loan isn't paid back
+	@notice Flash Loans to caller.
+	@param amount Amount to flash loan.
+	@dev Throws when insufficient balance OR flash loan isn't paid back.
 	"""
 	balance_before: uint256 = self.balance
 
@@ -66,9 +66,9 @@ def flash_loan(amount: uint256):
 
 @external
 @payable
-def pay_back_flash_loan():
+def __default__():
 	"""
-	@notice For paying back flash loans ONLY
+	@notice For paying back flash loans ONLY.
 	"""
 	pass
 

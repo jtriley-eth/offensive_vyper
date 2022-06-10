@@ -9,10 +9,10 @@ nonce: public(uint256)
 
 @external
 def generate_random_number() -> uint256:
-    '''
+    """
     @notice Generates a random number for the caller.
     @dev Increment nonce to ensure two contracts don't receive the same value in the same block.
-    '''
+    """
     digest: bytes32 = keccak256(
         concat(
             block.prevhash,

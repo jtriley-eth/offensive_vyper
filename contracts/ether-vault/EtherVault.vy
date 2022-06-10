@@ -22,7 +22,7 @@ deposits: public(HashMap[address, uint256])
 @payable
 def deposit():
 	"""
-	@notice Deposits Ether
+	@notice Deposits Ether.
 	"""
 	self.deposits[msg.sender] += msg.value
 
@@ -32,7 +32,7 @@ def deposit():
 @external
 def withdraw(amount: uint256):
 	"""
-	@notice Withdraws Ether
+	@notice Withdraws Ether.
 	"""
 	send(msg.sender, amount)
 
@@ -45,7 +45,7 @@ def withdraw(amount: uint256):
 @payable
 def __default__():
 	"""
-	@notice Receives Ether as Deposit
+	@notice Receives Ether as Deposit.
 	"""
 	self.deposits[msg.sender] += msg.value
 

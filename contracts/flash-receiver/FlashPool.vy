@@ -38,6 +38,11 @@ def __init__(token: address):
 
 @external
 def deposit(amount: uint256):
+	"""
+	@notice Deposits ERC20 token.
+	@param amount Amount to deposit.
+	@dev Reverts when balance or approval of ERC20 is insufficient.
+	"""
 	ERC20(self.token).transferFrom(msg.sender, self, amount)
 	self.deposits[msg.sender] += amount
 	log Deposit(msg.sender, amount)
@@ -45,6 +50,11 @@ def deposit(amount: uint256):
 
 @external
 def withdraw(amount: uint256):
+	"""
+	@notice Withdraws ERC20 token.
+	@param amount Amount to withdraw.
+	@dev Reverts when deposit amount is insufficient.
+	"""
 	self.deposits[msg.sender] -= amount
 	ERC20(self.token).transferFrom(self, msg.sender, amount)
 	log Withdrawal(msg.sender, amount)
@@ -52,7 +62,15 @@ def withdraw(amount: uint256):
 
 @external
 def flash_loan(amount: uint256):
+	"""
+	@notice Executes a flash loan, expects the token to be transferred back before completion.
+	@param amount Amount to flash loan.
+	@dev Reverts when insufficient balance OR when the amount + flash fee is not paid back.
+	"""
 	balance_before: uint256 = ERC20(self.token).balanceOf(self)
+
+	assert balance_before >= amount, "insufficient balance"
+
 	ERC20(self.token).transfer(msg.sender, amount)
 	IFlashLoanReceiver(msg.sender).execute()
 	balance_after: uint256 = ERC20(self.token).balanceOf(self)

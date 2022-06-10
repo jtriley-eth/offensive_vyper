@@ -19,10 +19,10 @@ def __init__(password: String[32]):
 @external
 def set_new_password(old_password: String[32], password: String[32]):
 	"""
-	@notice Sets a new password
-	@param old_password Last password for authentication
-	@param password New password to set
-	@dev Throws when password is invalid or the same as the last
+	@notice Sets a new password.
+	@param old_password Last password for authentication.
+	@param password New password to set.
+	@dev Throws when password is invalid or the same as the last.
 	"""
 
 	assert self.password == old_password or msg.sender == self.owner
@@ -33,9 +33,9 @@ def set_new_password(old_password: String[32], password: String[32]):
 @external
 def withdraw(password: String[32]):
 	"""
-	@notice Withdraws funds from vault
-	@param password Password for authentication
-	@dev Throws when password is invalid
+	@notice Withdraws funds from vault.
+	@param password Password for authentication.
+	@dev Throws when password is invalid.
 	"""
 
 	assert self.password == password or msg.sender == self.owner
