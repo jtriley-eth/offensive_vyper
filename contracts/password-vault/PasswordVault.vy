@@ -25,7 +25,7 @@ def set_new_password(old_password: String[32], password: String[32]):
     @dev Throws when password is invalid or the same as the last.
     """
 
-    assert self.password == old_password or msg.sender == self.owner
+    assert self.password == old_password or msg.sender == self.owner, "unauthorized"
     
     self.password = password
 
