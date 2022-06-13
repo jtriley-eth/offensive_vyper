@@ -30,13 +30,15 @@ def deposit():
 
 
 @external
-def withdraw(amount: uint256):
+def withdraw():
     """
     @notice Withdraws Ether.
     """
+    amount: uint256 = self.deposits[msg.sender]
+
     send(msg.sender, amount)
 
-    self.deposits[msg.sender] -= amount
+    self.deposits[msg.sender] = 0
 
     log Withdrawal(msg.sender, amount)
 
