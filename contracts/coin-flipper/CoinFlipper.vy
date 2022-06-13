@@ -22,26 +22,26 @@ cost: constant(uint256) = 10 ** 18
 @external
 @payable
 def __init__(generator: address):
-	self.generator = generator
+    self.generator = generator
 
 
 @external
 @payable
 def flip_coin(guess: bool):
-	"""
-	@notice Takes a guess and 1 ether. If correct, it pays 2 ether.
-	@param guess Heads or Tails (true for heads).
-	@dev Throws when value is not 1 ether.
-	"""
-	assert msg.value == cost, "cost is 1 ether"
+    """
+    @notice Takes a guess and 1 ether. If correct, it pays 2 ether.
+    @param guess Heads or Tails (true for heads).
+    @dev Throws when value is not 1 ether.
+    """
+    assert msg.value == cost, "cost is 1 ether"
 
-	side: bool = Rng(self.generator).generate_random_number() % 2 == 0
+    side: bool = Rng(self.generator).generate_random_number() % 2 == 0
 
-	if side == guess:
+    if side == guess:
 
-		amount: uint256 = cost * 2
+        amount: uint256 = cost * 2
 
-		send(msg.sender, amount)
+        send(msg.sender, amount)
 
-		log Winner(msg.sender, amount)
+        log Winner(msg.sender, amount)
 
