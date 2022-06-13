@@ -38,7 +38,7 @@ def withdraw(password: String[32]):
     @dev Throws when password is invalid.
     """
 
-    assert self.password == password or msg.sender == self.owner
+    assert self.password == password or msg.sender == self.owner, "unauthorized"
 
     send(msg.sender, self.balance)
 
