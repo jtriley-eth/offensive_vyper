@@ -8,7 +8,7 @@ describe('[UNSTOPPABLE AUCTION EXPLOIT]', async function () {
 
     before(async function () {
         // SET UP
-        ;[deployer, attacker, alice] = await ethers.getSigners()
+        ;[deployer, attacker, alice, bob] = await ethers.getSigners()
 
         this.auction = await (
             await ethers.getContractFactory('UnstoppableAuction', deployer)
@@ -25,7 +25,7 @@ describe('[UNSTOPPABLE AUCTION EXPLOIT]', async function () {
     after(async function () {
         // SUCCESS CONDITIONS
         await expect(
-            this.auction.connect(deployer).owner_withdraw()
-        ).to.be.reverted()
+            this.auction.connect(bob).bid({ value: INITIAL_BID.add(ethers.utils.parseEther('1')) })
+        ).to.be.revertedWith("invalid balance")
     })
 })

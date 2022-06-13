@@ -28,7 +28,7 @@ auction_end: public(uint256)
 
 @external
 def __init__(auction_start: uint256, auction_end: uint256):
-    assert auction_start < auction_end
+    assert auction_start < auction_end, "invalid time stamps"
 
     self.auction_start = auction_start
 
@@ -38,15 +38,15 @@ def __init__(auction_start: uint256, auction_end: uint256):
 
 
 @internal
-def handle_bid(bidder: address, amount: uint256):
-    assert self.balance == self.total_deposit
+def _handle_bid(bidder: address, amount: uint256):
+    assert self.balance == self.total_deposit + amount, "invalid balance"
 
-    assert self.auction_start < block.timestamp and block.timestamp < self.auction_end
+    assert self.auction_start <= block.timestamp and block.timestamp < self.auction_end, "not active"
 
     # if the current bidder is not highest_bidder, assert their bid is higher than the last,
     # otherwise, this means the highest_bidder is increasing their bid
     if bidder != self.highest_bidder:
-        assert amount > self.highest_bid
+        assert amount > self.highest_bid, "bid too low"
 
     self.total_deposit += amount
 
@@ -65,9 +65,9 @@ def withdraw():
     @notice Withdraws a losing bid
     @dev Throws if msg sender is still the highest bidder
     """
-    assert self.highest_bidder != msg.sender
+    assert self.highest_bidder != msg.sender, "highest bidder may not withdraw"
 
-    assert self.balance == self.total_deposit
+    assert self.balance == self.total_deposit, "invalid balance"
 
     amount: uint256 = self.deposits[msg.sender]
 
@@ -84,11 +84,11 @@ def owner_withdraw():
     @notice Owner withdraws Ether once the auction ends
     @dev Throws if msg sender is not the owner or if the auction has not ended
     """
-    assert msg.sender == self.owner
+    assert msg.sender == self.owner, "unauthorized"
 
-    assert self.balance == self.total_deposit
+    assert self.balance == self.total_deposit, "invalid balance"
 
-    assert block.timestamp >= self.auction_end
+    assert block.timestamp >= self.auction_end, "auction not ended"
 
     send(msg.sender, self.balance)
 
@@ -101,11 +101,11 @@ def bid():
     same as the last, allow them to increase their bid.
     @dev Throws if bid is not high enough OR if auction is not live.
     """
-    self.handle_bid(msg.sender, msg.value)
+    self._handle_bid(msg.sender, msg.value)
 
 
 @external
 @payable
 def __default__():
-    self.handle_bid(msg.sender, msg.value)
+    self._handle_bid(msg.sender, msg.value)
 
