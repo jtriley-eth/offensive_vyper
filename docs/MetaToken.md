@@ -8,20 +8,20 @@ Your objective is to drain their entire balance.
 
 ## Contracts in Scope
 
-[MetaTx.vy](../contracts/meta-tx/MetaTx.vy)
+[MetaToken.vy](../contracts/meta-token/MetaToken.vy)
 
 ## Exploit Contract
 
-[MetaTxExploit.vy](../contracts/exploits/MetaTxExploit.vy)
+[MetaTokenExploit.vy](../contracts/exploits/MetaTokenExploit.vy)
 
 ## Proof of Concept Script
 
-[meta-tx.challenge.js](../test/meta-tx.challenge.js)
+[meta-token.challenge.js](../test/meta-token.challenge.js)
 
 ## Execute Test
 
 ```bash
-yarn test:meta-tx
+yarn test:meta-token
 ```
 
 Good Hacking.

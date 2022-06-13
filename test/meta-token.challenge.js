@@ -9,7 +9,7 @@ function generateMessageHash(sender, receiver, amount, nonce) {
     return ethers.utils.keccak256(message)
 }
 
-describe('[META TX EXPLOIT]', async function () {
+describe('[META TOKEN EXPLOIT]', async function () {
     let deployer, attacker
 
     const INITIAL_BALANCE = ethers.utils.parseEther('100')
@@ -20,7 +20,7 @@ describe('[META TX EXPLOIT]', async function () {
         ;[deployer, attacker, alice] = await ethers.getSigners()
 
         this.token = await (
-            await ethers.getContractFactory('Token', deployer)
+            await ethers.getContractFactory('MetaToken', deployer)
         ).deploy("Meta Token", "Meta", INITIAL_BALANCE)
 
         await this.token.transfer(alice.address, INITIAL_BALANCE)

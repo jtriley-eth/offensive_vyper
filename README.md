@@ -49,6 +49,6 @@ To test your exploit, edit the Javascript test file and in the
 
 5. [Ownable Proxy](./docs/OwnableProxy.md)
 
-6. [Meta Tx](./docs/MetaTx.md)
+6. [Meta Token](./docs/MetaToken.md)
 
 7. [Flash Receiver](./docs/FlashReceiver.md)
