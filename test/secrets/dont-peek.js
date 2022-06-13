@@ -4,6 +4,6 @@
 // You should be able to find these secrets within the `test/*.challenge.js`
 // files.
 
-const superSecretPassword = 'a45JH}%?aHJ8a2u'
+const superSecretHash = '0xa808de0f9b83c2b43a6a4528d51b6fb1a34cb9c6b23d0aab4c9bcb36a3fcdb3d'
 
-module.exports = { superSecretPassword }
+module.exports = superSecretHash

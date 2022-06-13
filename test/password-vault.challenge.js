@@ -10,11 +10,9 @@ describe('[PASSWORD VAULT EXPLOIT]', async function () {
         // SET UP
         ;[deployer, attacker, alice] = await ethers.getSigners()
 
-        const { superSecretPassword } = require('./secrets/dont-peek')
-
         this.vault = await (
             await ethers.getContractFactory('PasswordVault', deployer)
-        ).deploy(superSecretPassword)
+        ).deploy(require('./secrets/dont-peek'))
 
         await deployer.sendTransaction({ to: this.vault.address, value: VAULT_BALANCE })
     })

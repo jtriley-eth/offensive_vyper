@@ -5,40 +5,40 @@
 @author jtriley.eth
 """
 
-password: String[32]
+password_hash: bytes32
 
 owner: address
 
 @external
-def __init__(password: String[32]):
-    self.password = password
+def __init__(password_hash: bytes32):
+    self.password_hash = password_hash
 
     self.owner = msg.sender
 
 
 @external
-def set_new_password(old_password: String[32], password: String[32]):
+def set_new_password(old_password_hash: bytes32, new_password_hash: bytes32):
     """
-    @notice Sets a new password.
-    @param old_password Last password for authentication.
-    @param password New password to set.
-    @dev Throws when password is invalid or the same as the last.
+    @notice Sets a new password hash. Passwords are hashed offchain for security.
+    @param old_password_hash Last password hash for authentication.
+    @param new_password_hash New password hash to set.
+    @dev Throws when password is invalid and the caller is not the owner.
     """
 
-    assert self.password == old_password or msg.sender == self.owner, "unauthorized"
+    assert self.password_hash == old_password_hash or msg.sender == self.owner, "unauthorized"
     
-    self.password = password
+    self.password_hash = new_password_hash
 
 
 @external
-def withdraw(password: String[32]):
+def withdraw(password_hash: bytes32):
     """
     @notice Withdraws funds from vault.
-    @param password Password for authentication.
-    @dev Throws when password is invalid.
+    @param password_hash Password hash for authentication.
+    @dev Throws when password hash is invalid and the caller is not the owner.
     """
 
-    assert self.password == password or msg.sender == self.owner, "unauthorized"
+    assert self.password_hash == password_hash or msg.sender == self.owner, "unauthorized"
 
     send(msg.sender, self.balance)
 
