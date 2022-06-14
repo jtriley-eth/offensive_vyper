@@ -8,7 +8,7 @@
 from vyper.interfaces import ERC20
 
 interface IFlashLoanReceiver:
-    def execute(): nonpayable
+    def execute(amount: uint256): nonpayable
 
 
 event Deposit:
@@ -72,7 +72,7 @@ def flash_loan(amount: uint256):
     assert balance_before >= amount, "insufficient balance"
 
     ERC20(self.token).transfer(msg.sender, amount)
-    IFlashLoanReceiver(msg.sender).execute()
+    IFlashLoanReceiver(msg.sender).execute(amount)
     balance_after: uint256 = ERC20(self.token).balanceOf(self)
     assert balance_after >= balance_before + self.flash_fee, "not paid back"
 
