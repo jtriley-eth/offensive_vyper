@@ -33,7 +33,7 @@ token: public(address)
 @external
 def __init__(token: address):
     self.token = token
-    self.flash_fee = 10 ** 18
+    self.flash_fee = 100000000000000000000
 
 
 @external
