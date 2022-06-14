@@ -13,7 +13,7 @@ describe('[META TOKEN EXPLOIT]', async function () {
     let deployer, attacker
 
     const INITIAL_BALANCE = ethers.utils.parseEther('100')
-    const TRANSFER_AMOUNT = ethers.utils.parseEther('1')
+    const TRANSFER_AMOUNT = ethers.utils.parseEther('10')
 
     before(async function () {
         // SET UP
