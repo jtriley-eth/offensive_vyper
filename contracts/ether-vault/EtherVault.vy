@@ -36,7 +36,7 @@ def withdraw():
     """
     amount: uint256 = self.deposits[msg.sender]
 
-    send(msg.sender, amount)
+    raw_call(msg.sender, b"", value=amount)
 
     self.deposits[msg.sender] = 0
 
