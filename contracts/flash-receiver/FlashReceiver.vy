@@ -23,6 +23,7 @@ pool: public(address)
 @external
 def __init__(token: address, pool: address):
     self.token = token
+    self.pool = pool
 
 
 @internal
