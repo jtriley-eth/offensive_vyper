@@ -47,8 +47,8 @@ To test your exploit, edit the Javascript test file and in the
 
 4. [Ether Flash Loan](./docs/EtherFlashLoan.md)
 
-5. [Ownable Proxy](./docs/OwnableProxy.md)
+5. [Flash Receiver](./docs/FlashReceiver.md)
 
-6. [Meta Token](./docs/MetaToken.md)
+6. [Ownable Proxy](./docs/OwnableProxy.md)
 
-7. [Flash Receiver](./docs/FlashReceiver.md)
+7. [Meta Token](./docs/MetaToken.md)
