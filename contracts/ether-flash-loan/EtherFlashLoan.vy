@@ -28,6 +28,7 @@ def deposit():
     @notice Deposits Ether.
     """
     self.deposits[msg.sender] += msg.value
+    log Deposit(msg.sender, msg.value)
 
 
 @external
