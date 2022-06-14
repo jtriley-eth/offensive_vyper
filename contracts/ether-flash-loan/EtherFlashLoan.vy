@@ -44,7 +44,7 @@ def withdraw(amount: uint256):
 
     self.deposits[msg.sender] = sender_deposit - amount
 
-    send(msg.sender, amount)
+    raw_call(msg.sender, b"", value=amount)
 
     log Withdrawal(msg.sender, amount)
 
