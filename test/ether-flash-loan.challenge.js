@@ -15,6 +15,10 @@ describe('[ETHER FLASH LOAN EXPLOIT]', async function () {
         ).deploy()
 
         await this.etherFlashLoan.deposit({ value: INITIAL_BALANCE })
+
+        expect(
+            await ethers.provider.getBalance(this.etherFlashLoan.address)
+        ).to.be.equal(INITIAL_BALANCE)
     })
 
     it('Exploit', async function () {

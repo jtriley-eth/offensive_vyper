@@ -13,6 +13,10 @@ describe('[ETHER VAULT EXPLOIT]', async function () {
         this.vault = await (await ethers.getContractFactory('EtherVault', deployer)).deploy()
 
         await deployer.sendTransaction({ to: this.vault.address, value: VAULT_BALANCE })
+
+        expect(
+            await ethers.provider.getBalance(this.vault.address)
+        ).to.be.equal(VAULT_BALANCE)
     })
 
     it('Exploit', async function () {

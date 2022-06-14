@@ -15,6 +15,10 @@ describe('[PASSWORD VAULT EXPLOIT]', async function () {
         ).deploy(require('./secrets/dont-peek'))
 
         await deployer.sendTransaction({ to: this.vault.address, value: VAULT_BALANCE })
+
+        expect(
+            await ethers.provider.getBalance(this.vault.address)
+        ).to.be.equal(VAULT_BALANCE)
     })
 
     it('Exploit', async function () {

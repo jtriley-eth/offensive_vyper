@@ -15,6 +15,10 @@ describe('[OWNABLE PROXY EXPLOIT]', async function () {
         ).deploy()
 
         await deployer.sendTransaction({ to: this.ownableProxy.address, value: INITIAL_BALANCE })
+
+        expect(
+            await ethers.provider.getBalance(this.ownableProxy.address)
+        ).to.be.equal(INITIAL_BALANCE)
     })
 
     it('Exploit', async function () {

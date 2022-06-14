@@ -15,6 +15,10 @@ describe('[UNSTOPPABLE AUCTION EXPLOIT]', async function () {
         ).deploy('0', ethers.constants.MaxUint256)
 
         await this.auction.connect(alice).bid({ value: INITIAL_BID })
+
+        expect(
+            await ethers.provider.getBalance(this.auction.address)
+        ).to.be.equal(INITIAL_BID)
     })
 
     it('Exploit', async function () {
