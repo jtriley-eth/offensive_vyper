@@ -19,7 +19,7 @@ Your objective is to not break even; drain all ten Ether from the contract.
 
 ## Proof of Concept Script
 
-[unstoppable-auction.challenge.js](../test/coin-flipper.challenge.js)
+[coin-flipper.challenge.js](../test/coin-flipper.challenge.js)
 
 ## Execute Test
 
